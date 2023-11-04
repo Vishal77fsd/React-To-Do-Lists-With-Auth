@@ -42,6 +42,10 @@ const ToDoList = () => {
   }
   let oldTask = [];
 
+  function handleEdit(e) {
+    console.log(e.target.dataset.id);
+  }
+
   function handleDone(e) {
     const id = e.target.dataset.id;
     oldTask = JSON.parse(localStorage.getItem("todotask"));
@@ -93,6 +97,7 @@ const ToDoList = () => {
   if (!isUserValid) {
     return <Navigate to={"/"} />;
   }
+
   return (
     <div>
       <div className="flex justify-end gap-4 p-4 items-center">
@@ -130,7 +135,13 @@ const ToDoList = () => {
             tasks.map((task, index) => (
               <TaskCard
                 key={index}
-                data={{ task, handleDone, handleDelete, isDoneTask: false }}
+                data={{
+                  task,
+                  handleDone,
+                  handleDelete,
+                  isDoneTask: false,
+                  handleEdit,
+                }}
               />
             ))}
 
